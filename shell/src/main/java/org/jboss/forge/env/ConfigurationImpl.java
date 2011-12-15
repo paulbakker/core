@@ -32,6 +32,8 @@ import org.jboss.forge.resources.FileResource;
 import org.jboss.forge.shell.Shell;
 import org.jboss.solder.unwraps.Unwraps;
 
+import java.io.File;
+
 /**
  * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
  * 
@@ -68,8 +70,7 @@ public class ConfigurationImpl
 
    private Configuration getGlobalConfig(final ScopedConfigurationAdapter config) throws ConfigurationException
    {
-      XMLConfiguration globalXml = new XMLConfiguration(environment.getUserConfiguration()
-               .getUnderlyingResourceObject());
+      XMLConfiguration globalXml = new XMLConfiguration(new File("config.xml"));
       globalXml.setReloadingStrategy(new FileChangedReloadingStrategy());
       globalXml.setAutoSave(true);
       return new ConfigurationAdapter(config, globalXml);
